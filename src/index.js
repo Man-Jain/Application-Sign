@@ -13,8 +13,11 @@ import {
 
 import './index.css';
 import NavExample from './Navbar';
-import CreateArtifact from './CreateArtifact';
+import CreateApplication from './studentdash';
 import TrackArtifact from './TrackArtifact';
+import HODdash from './HODdash';
+import parentsdash from './parentsdash';
+import TGDash from './TGDash';
 import App from './App.js'
 
 import {config} from './utils.js'
@@ -64,8 +67,11 @@ class Main extends React.Component {
       <NavExample />
       <HashRouter>
       <Route exact path="/" component={TrackArtifact}/>
-        <Route path="/new-artifact" component={CreateArtifact}/>
+        <Route path="/student-dash" component={CreateApplication}/>
         <Route path="/block" component={App}/>
+        <Route path="/tg-dash" component={TGDash}/>
+        <Route path="/hod-dash" component={HODdash}/>
+        <Route path="/parents-dash" component={parentsdash}/>
       </HashRouter>
       </div>
     );
