@@ -1,5 +1,5 @@
 import React from "react";
-import { Collapse,Container,Row, FormInput, Button,Col, Card,CardHeader,CardTitle,CardBody,CardFooter, } from "shards-react";
+import { Collapse,Container,Row, FormInput, Button,Col, Card,CardHeader,CardTitle,CardBody,FormTextarea,FormSelect,Badge,Alert } from "shards-react";
 import {config} from './utils.js'
 
 console.log(config.mnemonic);
@@ -13,14 +13,15 @@ var recoveredAccount = algosdk.mnemonicToSecretKey(config.mnemonic);
 let algodclient = new algosdk.Algod(config.token, config.server, config.port);
 const kmdclient = new algosdk.Kmd(config.token2, config.serverkmd, config.port2);
 
-export default class CreateArtifact extends React.Component {
+export default class TGdash extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      latestArtifact: null,
+      latestArtifact: 'Application 1',
       new : Math.random(),
     };
   }
+
   getNewArtifact(hash){
     const latestArtifact = this.state.latestArtifact;
     const latestArtifactNew = hash;
@@ -34,10 +35,7 @@ export default class CreateArtifact extends React.Component {
       <div>
         <Container className="main-container">
         <Row>
-        <Col sm="12" md="6">
-        <NewArtifact newartifact={this.getNewArtifact.bind(this)} ></NewArtifact>
-        </Col>
-        <Col sm="12" md="6">
+        <Col sm="12" md="12">
         <CreatedArtifacts key={this.state.new} latestOne={this.state.latestArtifact} ></CreatedArtifacts>
         </Col>
         </Row>
@@ -108,31 +106,40 @@ class NewArtifact extends React.Component {
       this.setState(Object.assign({}, this.state, {name: target.value}));
     }
   }
-  render(){
+   render(){
     return(
       <div>
-      <h3>Track A New Item</h3><hr/> <br />
+      <h3>Enter New Application</h3><hr/> <br />
       <Card>
-      <CardHeader>Enter The Details of Artifact</CardHeader>
+      <CardHeader>Enter The Details Of Application</CardHeader>
       <CardBody>
-        <CardTitle>Send To</CardTitle>
-        <FormInput name="reciever" placeholder="Reciever's Address" value={this.state.reciever} onChange={this.handleInput} />
+        <CardTitle>Subject</CardTitle>
+        <FormInput name="reciever" placeholder="Subject" value={this.state.reciever} onChange={this.handleInput} />
         <br />
-        <CardTitle>Location Coordinates</CardTitle>
-        <FormInput name="coordinates" placeholder="Coordinate(Seperated By Commas)" value={this.state.coordinates} onChange={this.handleInput}/>
+        <CardTitle>Application Details</CardTitle>
+        <FormTextarea placeholder="Enter Application Details"/>
+ 
         <br />
-        <CardTitle>Item To Locate</CardTitle>
-        <FormInput name="name" placeholder="Item Name" value={this.state.name} onChange={this.handleInput}/>
+        
+        <CardTitle>Application From:</CardTitle>
+        <FormInput name="name" placeholder="Application From" value={this.state.name} onChange={this.handleInput}/>
         <br />
-        <Button onClick={this.addArtifact}>Begin Tracking</Button>
+        <CardTitle>Application To:</CardTitle>
+        <FormSelect>
+      <option value="first">HOD</option>
+      <option value="second">Teacher Guardian</option>
+      <option value="third"> Parents</option>
+        
+    </FormSelect>
+    <br /> <br /> 
+        <Button onClick={this.addArtifact}></Button>
       </CardBody>
-      <CardFooter>Card footer</CardFooter>
+      
     </Card>
       </div>
     );
   }
 }
-
 class CreatedArtifacts extends React.Component {
   constructor(props) {
     super(props);
@@ -162,20 +169,23 @@ class CreatedArtifacts extends React.Component {
       <li key={item.txId} className="list-items-artifacts">
       <br/ >
       <Card>
-      <CardHeader>Latest Hash :-{item.txId} </CardHeader>
+      <CardHeader>Latest Application Id:-{item.txId} </CardHeader>
       <CardBody>
-        <p>Item Name :- </p>
-        <p>Item Current Location :- </p>
-        <Button onClick={this.toggle}>Toggle</Button>
+        <p>Application Name :- </p>
+        <p>Current status</p>
+       
+        <Button onClick={this.toggle}>See The Status</Button>
+        <Button>Approve</Button>
         <Collapse open={this.state.collapse}>
-          <div className="p-3 mt-3 border rounded">
-            <h5>😍 Now you see me!</h5>
+          
+        <br/ >
             <span>
-              In sagittis nibh non arcu viverra, nec imperdiet quam suscipit.
-              Sed porta eleifend scelerisque. Vestibulum dapibus quis arcu a
-              facilisis.
+            <Badge theme="success">Parents</Badge>
+       <Badge theme="danger">Teacher Guardian</Badge>
+      <Badge theme="danger">HOD</Badge>
+ 
             </span>
-          </div>
+         
         </Collapse>
       </CardBody>
     </Card>
@@ -183,7 +193,7 @@ class CreatedArtifacts extends React.Component {
     )
     return(
         <div>
-        <h3>Previously Created Artifacts</h3><hr/> <br />
+        <h3>Previously Created Application</h3><hr/> <br />
         {listItems}
       </div>
     );

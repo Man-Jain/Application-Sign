@@ -58,7 +58,7 @@ export default class NavExample extends React.Component {
       <div>
       <HashRouter>
       <Navbar type="dark" theme="primary" expand="md" className="navbar-class">
-        <NavbarBrand href="#">Track Matic</NavbarBrand>
+       
         <NavbarToggler onClick={this.toggleNavbar} />
 
         <Collapse open={this.state.collapseOpen} navbar>
@@ -69,13 +69,23 @@ export default class NavExample extends React.Component {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/new-artifact" className="nav-link">
-              New Artifact
+              <NavLink to="/student-dash" className="nav-link">
+              Student
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/block" className="nav-link">
-              New Artifact
+              <NavLink to="/tg-dash" className="nav-link">
+              TG
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="/hod-dash" className="nav-link">
+              HOD
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="/parents-dash" className="nav-link">
+              Parents
               </NavLink>
             </NavItem>
             <Dropdown
