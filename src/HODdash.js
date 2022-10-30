@@ -2,7 +2,7 @@ import React from "react";
 import { Collapse,Container,Row, FormInput, Button,Col, Card,CardHeader,CardTitle,CardBody,FormTextarea,FormSelect,Badge } from "shards-react";
 import {config} from './utils.js'
 
-console.log(config.mnemonic);
+console.log(config.mnemonic,"config");
 
 const NodeCache = require( "node-cache" );
 const myCache = new NodeCache();
@@ -89,7 +89,7 @@ class NewArtifact extends React.Component {
     console.log("Transaction : " + tx.txId);
 
 })().catch(e => {
-    console.log(e);
+    console.log(e,"e");
 });
   }
 
@@ -130,13 +130,13 @@ class NewArtifact extends React.Component {
       <option value="second">Teacher Guardian</option>
       <option value="third"> Parents</option>
         
-    </FormSelect>
-    <br /> <br /> 
+      </FormSelect>
+        <br /> <br /> 
         <Button onClick={this.addArtifact}></Button>
       </CardBody>
       
     </Card>
-      </div>
+   </div>
     );
   }
 }
@@ -181,8 +181,8 @@ class CreatedArtifacts extends React.Component {
         <Collapse open={this.state.collapse}>
           
         <br/ >
-            <span>
-            <Badge theme="success">Parents</Badge>
+        <span>
+       <Badge theme="success">Parents</Badge>
        <Badge theme="danger">Teacher Guardian</Badge>
       <Badge theme="danger">HOD</Badge>
  
@@ -194,6 +194,7 @@ class CreatedArtifacts extends React.Component {
       </li>
     )
     return(
+      // Previously created application
         <div>
         <h3>Previously Created Application</h3><hr/> <br />
         {listItems}
