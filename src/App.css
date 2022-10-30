@@ -1,3 +1,4 @@
+/* Style for app */
 .App {
   text-align: center;
 }
@@ -22,6 +23,7 @@
   color: #61dafb;
 }
 
+/* Animation for app */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
